@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 
 export function Players() {
   const { players, status } = useSelector(selectPlayers);
+
   const dispatch = useDispatch();
 
   useEffect(() => dispatch(fetchPlayers()), [dispatch]);
@@ -18,11 +19,15 @@ export function Players() {
           <Spinner thickness="6px" emptyColor="gray.200" mt={30} size="xl" color="blue" />
         ) :
           (
-            players?.length && players.map(player => (
-              <Link to={`/player/${player.id}`} key={player.id}>
-                <Card player={player}></Card>
-              </Link>
-            ))
+            players?.length ? (
+              players.map(player => (
+                <Link to={`/player/${player.id}`} key={player.id}>
+                  <Card player={player}></Card>
+                </Link>
+              ))
+            ) : (
+              <p>Our players are resting, please come back later 🙃</p>
+            )
           )
         }
       </Flex>
