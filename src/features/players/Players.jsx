@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchPlayers, selectPlayers } from './playersSlice';
 import { Flex, Spinner } from '@chakra-ui/react';
 import Card from '../Card/Card';
+import { Link } from 'react-router-dom';
 
 export function Players() {
   const { players, status } = useSelector(selectPlayers);
@@ -18,7 +19,9 @@ export function Players() {
         ) :
           (
             players?.length && players.map(player => (
-              <Card player={player} key={player.id}></Card>
+              <Link to={`/player/${player.id}`} key={player.id}>
+                <Card player={player}></Card>
+              </Link>
             ))
           )
         }
