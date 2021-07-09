@@ -1,0 +1,8 @@
+.formikForm {
+  display: flex;
+  align-items: center;
+}
+
+.badge {
+  cursor: pointer;
+}
