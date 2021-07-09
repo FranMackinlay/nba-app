@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getPlayer } from './playersAPI';
+import { getPlayer } from '../services/PlayersSrv';
 
 const initialState = {
   player: {},

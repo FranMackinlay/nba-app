@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getPlayers, searchPlayer } from './playersAPI';
+import { getPlayers, searchPlayer } from '../services/PlayersSrv';
 
 const initialState = {
   players: [],

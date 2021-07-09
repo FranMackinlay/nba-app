@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchPlayers, selectPlayers } from './playersSlice';
+import { fetchPlayers, selectPlayers } from '../../slices/playersSlice';
 import { Flex, Spinner } from '@chakra-ui/react';
 import Card from '../Card/Card';
 import { Link } from 'react-router-dom';

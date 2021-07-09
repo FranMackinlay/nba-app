@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchPlayer, selectPlayer } from '../players/playerSlice';
+import { fetchPlayer, selectPlayer } from '../../slices/playerSlice';
 import { Box, Button, Center, Flex, Image, Spinner } from '@chakra-ui/react';
 import { PLAYER_IMG_URL } from '../../constants/api.constants';
 import { chakra } from '@chakra-ui/react';
