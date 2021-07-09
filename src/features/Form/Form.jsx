@@ -7,7 +7,7 @@ import {
   Box,
   Button,
 } from "@chakra-ui/react";
-import { fetchPlayers, fetchPlayer } from '../players/playersSlice';
+import { fetchPlayers, searchPlayers } from '../players/playersSlice';
 import { Formik, Field, Form } from 'formik';
 import { useDispatch } from 'react-redux';
 
@@ -18,7 +18,7 @@ export default function FormComponent() {
 
   const onFormikSubmit = ({query}, { setSubmitting, resetForm }) => {
     setSubmitting(false);
-    dispatch(fetchPlayer(query))
+    dispatch(searchPlayers(query))
     resetForm();
   }
 
