@@ -9,8 +9,8 @@ const initialState = {
 export const fetchPlayer = createAsyncThunk(
   'players/fetchPlayer',
   async (id) => {
-    const response = await getPlayer(id);
-    return response.data;
+    const { data } = await getPlayer(id);
+    return data;
   }
 );
 
@@ -18,9 +18,9 @@ export const playerSlice = createSlice({
   name: 'player',
   initialState,
   extraReducers: (builder) => {
-    builder.addCase(fetchPlayer.fulfilled, (state, action) => {
+    builder.addCase(fetchPlayer.fulfilled, (state, { payload }) => {
       state.status = 'idle';
-      state.player = action.payload;
+      state.player = payload;
     });
   },
 });

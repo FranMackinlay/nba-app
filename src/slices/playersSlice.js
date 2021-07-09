@@ -9,16 +9,16 @@ const initialState = {
 export const fetchPlayers = createAsyncThunk(
   'players/fetchPlayers',
   async () => {
-    const response = await getPlayers();
-    return response.data.data;
+    const { data } = await getPlayers();
+    return data.data;
   }
 );
 
 export const searchPlayers = createAsyncThunk(
   'players/searchPlayer',
   async (query) => {
-    const response = await searchPlayer(query);
-    return response.data.data;
+    const { data } = await searchPlayer(query);
+    return data.data;
   }
 );
 
@@ -30,14 +30,13 @@ export const playersSlice = createSlice({
       .addCase(fetchPlayers.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(fetchPlayers.fulfilled, (state, action) => {
+      .addCase(fetchPlayers.fulfilled, (state, { payload }) => {
         state.status = 'idle';
-        state.players = action.payload;
+        state.players = payload;
       })
-      .addCase(searchPlayers.fulfilled, (state, action) => {
+      .addCase(searchPlayers.fulfilled, (state, { payload }) => {
         state.status = 'idle';
-        console.log(`action.payload`, action.payload);
-        state.players = action.payload;
+        state.players = payload;
       });
   },
 });
