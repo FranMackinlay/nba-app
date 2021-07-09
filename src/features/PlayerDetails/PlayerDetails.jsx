@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 
 const PlayerDetails = ({ match: { params } }) => {
 	const { player, status } = useSelector(selectPlayer);
-	console.log(`player`, player, status);
+
 	const dispatch = useDispatch();
 
 	useEffect(() => {
