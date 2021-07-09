@@ -8,3 +8,7 @@ export function getPlayers() {
 export function searchPlayer(query) {
   return new axios.get(`${API_URL}/players?search=${query}`);
 }
+
+export function getPlayer(id) {
+  return new axios.get(`${API_URL}/players/${id}`);
+}
