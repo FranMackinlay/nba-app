@@ -3,7 +3,7 @@ import { getPlayer } from './playersAPI';
 
 const initialState = {
   player: {},
-  status: 'idle',
+  status: 'loading',
 };
 
 export const fetchPlayer = createAsyncThunk(
