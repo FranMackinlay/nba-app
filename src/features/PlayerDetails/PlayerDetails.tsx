@@ -1,28 +1,28 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { fetchPlayer, selectPlayer } from '../../slices/playerSlice';
 import { Box, Button, Center, Flex, Image, Spinner } from '@chakra-ui/react';
 import { PLAYER_IMG_URL } from '../../constants/api.constants';
 import { chakra } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 
-const PlayerDetails = ({ match: { params } }) => {
-	const { player, status } = useSelector(selectPlayer);
+const PlayerDetails = ({ match: { params } }: { match: { params: { id: string } } }) => {
+  const { player, status } = useAppSelector(selectPlayer);
 
-	const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-	useEffect(() => {
-		dispatch(fetchPlayer(params.id));
-	}, [dispatch, params]);
+  useEffect(() => {
+    dispatch(fetchPlayer(params.id));
+  }, [dispatch, params]);
 
-	return (
-		<div>
-			{status === 'loading' ? (
-				<Spinner thickness='6px' emptyColor='gray.200' mt={30} size='xl' color='blue' />
-			) : (
+  return (
+    <div>
+      {status === 'loading' ? (
+        <Spinner thickness='6px' emptyColor='gray.200' mt={30} size='xl' color='blue' />
+      ) : (
         <Box>
           <Box position="absolute" top={-10} left={2}>
-            <Link to="/" passHref>
+            <Link to="/">
               <Button colorScheme="teal" variant="solid"> Go back</Button>
             </Link>
           </Box>
@@ -37,19 +37,19 @@ const PlayerDetails = ({ match: { params } }) => {
                     {player.first_name} {player.last_name}
                   </chakra.h1>
                   <Flex flexDirection='column' fontSize='1.5em'>
-                    <Box style={{display: 'flex', justifyContent: 'space-between'}} w="100%">
+                    <Box style={{ display: 'flex', justifyContent: 'space-between' }} w="100%">
                       <Box>Position:</Box>
                       <Box>{player.position}</Box>
                     </Box>
-                    <Box style={{display: 'flex', justifyContent: 'space-between'}} w="100%">
+                    <Box style={{ display: 'flex', justifyContent: 'space-between' }} w="100%">
                       <Box>Height feet:</Box>
                       <Box>{player.height_feet === null ? 'N/A' : player.height_feet}</Box>
                     </Box>
-                    <Box style={{display: 'flex', justifyContent: 'space-between'}} w="100%">
+                    <Box style={{ display: 'flex', justifyContent: 'space-between' }} w="100%">
                       <Box>Height inches:</Box>
                       <Box>{player.height_inches === null ? 'N/A' : player.height_inches}</Box>
                     </Box>
-                    <Box style={{display: 'flex', justifyContent: 'space-between'}} w="100%">
+                    <Box style={{ display: 'flex', justifyContent: 'space-between' }} w="100%">
                       <Box>
                         Weight pounds:
                       </Box>
@@ -59,19 +59,19 @@ const PlayerDetails = ({ match: { params } }) => {
                     </Box>
                   </Flex>
                   <Flex flexDirection='column' fontSize='1.5em'>
-                    <Box style={{display: 'flex', justifyContent: 'space-between'}} w="100%">
+                    <Box style={{ display: 'flex', justifyContent: 'space-between' }} w="100%">
                       <Box>Full name:</Box>
                       <Box>{player.team.full_name}</Box>
                     </Box>
-                    <Box style={{display: 'flex', justifyContent: 'space-between'}} w="100%">
+                    <Box style={{ display: 'flex', justifyContent: 'space-between' }} w="100%">
                       <Box>Division:</Box>
                       <Box>{player.team.division}</Box>
                     </Box>
-                    <Box style={{display: 'flex', justifyContent: 'space-between'}} w="100%">
+                    <Box style={{ display: 'flex', justifyContent: 'space-between' }} w="100%">
                       <Box>Conference:</Box>
                       <Box>{player.team.conference}</Box>
                     </Box>
-                    <Box style={{display: 'flex', justifyContent: 'space-between'}} w="100%">
+                    <Box style={{ display: 'flex', justifyContent: 'space-between' }} w="100%">
                       <Box>
                         City:
                       </Box>
@@ -85,11 +85,11 @@ const PlayerDetails = ({ match: { params } }) => {
                 <Box textAlign="center">This player is resting, please come back later 🙃</Box>
               )}
             </Box>
-  				</Center>
+          </Center>
         </Box>
-			)}
-		</div>
-	);
+      )}
+    </div>
+  );
 };
 
 export default PlayerDetails;

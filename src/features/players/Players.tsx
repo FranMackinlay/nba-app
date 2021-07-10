@@ -1,16 +1,18 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import { fetchPlayers, selectPlayers } from '../../slices/playersSlice';
 import { Flex, Spinner } from '@chakra-ui/react';
 import Card from '../Card/Card';
 import { Link } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 
 export function Players() {
-  const { players, status } = useSelector(selectPlayers);
+  const { players, status } = useAppSelector(selectPlayers);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  useEffect(() => dispatch(fetchPlayers()), [dispatch]);
+  useEffect(() => {
+    dispatch(fetchPlayers());
+  }, [dispatch]);
 
   return (
     <div>
@@ -22,7 +24,7 @@ export function Players() {
             players?.length ? (
               players.map(player => (
                 <Link to={`/player/${player.id}`} key={player.id}>
-                  <Card player={player}></Card>
+                  <Card {...player}></Card>
                 </Link>
               ))
             ) : (

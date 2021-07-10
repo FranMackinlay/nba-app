@@ -2,9 +2,10 @@ import React from 'react';
 import { Box, Image } from '@chakra-ui/react';
 import { PLAYER_IMG_URL } from '../../constants/api.constants';
 import styles from './Card.module.css';
+import { Player } from '../../interfaces/player.interface';
 
 
-const Card = ({player}) => {
+const Card = (player: Player): JSX.Element => {
   return (
     <Box className={styles.playerCard} m={{ base: "5px 0", md: "5px" }} maxW={{ base: "", md: "345px" }} flex={{ base: "1 1 auto", md: "" }} textAlign="center" borderWidth="1px" borderRadius="lg" overflow="hidden">
       <Box p="6">

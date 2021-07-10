@@ -8,17 +8,18 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { fetchPlayers, searchPlayers } from '../../slices/playersSlice';
-import { Formik, Field, Form } from 'formik';
-import { useDispatch } from 'react-redux';
+import { Formik, Field, Form, FormikHelpers } from 'formik';
+import Value from '../../interfaces/valie.interface';
+import { useAppDispatch } from '../../app/hooks';
 
 
 export default function FormComponent() {
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const onFormikSubmit = ({ query }, { setSubmitting, resetForm }) => {
+  const onFormikSubmit = async (value: Value, { setSubmitting, resetForm }: FormikHelpers<Value>) => {
     setSubmitting(false);
-    dispatch(searchPlayers(query));
+    dispatch(searchPlayers(value));
     resetForm();
   }
 
@@ -32,7 +33,7 @@ export default function FormComponent() {
         <Formik initialValues={{ query: '' }} onSubmit={onFormikSubmit}>
           <Form className={styles.formikForm}>
             <Field id="query" name="query" placeholder="Pasta">
-              {(item) => (
+              {(item: any) => (
                 <FormControl isInvalid={item.form.errors.name && item.form.touched.name} d="flex" alignItems="center">
                   <Input {...item.field} id="query-input" placeholder="First name or last name" m={15} />
                   <FormErrorMessage>{item.form.errors.name}</FormErrorMessage>
